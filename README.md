@@ -40,8 +40,8 @@ Delete following:
 Author
 ------
 
-Scott Wadden
-Daisuke Murase :@typester (github, twitter, CPAN, etc..)
+* Daisuke Murase :@typester (github, twitter, CPAN, etc..)
+* Scott Wadden (SublimeText 2 port)
 
 License
 -------
