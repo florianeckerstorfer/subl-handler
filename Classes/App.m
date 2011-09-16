@@ -4,6 +4,8 @@
 
 @implementation App
 
+NSString *defaultPath = @"/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl";
+
 -(void)awakeFromNib {
     NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
     path = [d objectForKey:@"path"];
@@ -13,9 +15,9 @@
 }
 
 -(void)handleGetURLEvent:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
-    if (nil == path) return;
+    if (nil == path) path = defaultPath;
 
-    // emacs://open/?url=file://~/.bash_profile&line=11&column=2
+    // txmt://open/?url=file://~/.bash_profile&line=11&column=2
     NSURL *url = [NSURL URLWithString:[[event paramDescriptorForKeyword:keyDirectObject] stringValue]];
 
     if (url && [[url host] isEqualToString:@"open"]) {
@@ -30,7 +32,7 @@
             if (file) {
                 NSTask *task = [[NSTask alloc] init];
                 [task setLaunchPath:path];
-                [task setArguments:[NSArray arrayWithObjects:@"-n", [NSString stringWithFormat:@"+%d:%d", [line integerValue], [column integerValue]], file, nil]];
+                [task setArguments:[NSArray arrayWithObjects: [NSString stringWithFormat:@"%@:%d:%d", file, [line integerValue], [column integerValue]], nil]];
                 [task launch];
                 [task release];
             }
@@ -45,9 +47,8 @@
 -(IBAction)showPrefPanel:(id)sender {
     if (path) {
         [textField setStringValue:path];
-    }
-    else {
-        [textField setStringValue:@""];
+    } else {
+        [textField setStringValue:defaultPath];
     }
     [prefPanel makeKeyAndOrderFront:nil];
 }

@@ -7,11 +7,10 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>emacs</string>
 				<string>txmt</string>
 			</array>
 			<key>CFBundleURLName</key>
-			<string>org.unknownplace.emacshandler</string>
+			<string>org.unknownplace.sublhandler</string>
 		</dict>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
@@ -21,7 +20,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>org.unknownplace.emacshandler</string>
+	<string>org.unknownplace.sublhandler</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
