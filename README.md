@@ -27,8 +27,7 @@ Open terminal and type:
 
     open 'txmt://open/?url=file:///etc/hosts'
 
-or just click [this link](txmt://open/?url=file:///etc/hosts)
-
+or just click any txmt link.
 
 Uninstalling
 ------------
@@ -37,7 +36,6 @@ Delete following:
 
     /Applications/SublHandler.app
     ~/Library/Preferences/org.unknownplace.sublhandler.plist
-
 
 Author
 ------
