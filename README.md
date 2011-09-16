@@ -1,4 +1,4 @@
-EmacsURLHandler for OSX
+TextMate URLHandler for SublimeText 2 on OSX
 =======================
 
 This application enables SublimeText 2 to open TextMate's `txmt:` urls, as described [here](http://manual.macromates.com/en/using_textmate_from_terminal#url_scheme_html)
