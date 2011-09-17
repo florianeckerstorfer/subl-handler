@@ -8,7 +8,7 @@ This application enables SublimeText 2 to open TextMate's `txmt:` urls, as descr
 Requirements
 ------------
 
-* Mac OS X (10.5 or 10.6)
+* Mac OS X (10.6 or 10.7)
 * SublimeText 2
 
 Installation
