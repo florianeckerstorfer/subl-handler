@@ -7,7 +7,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>txmt</string>
+				<string>subl</string>
 			</array>
 			<key>CFBundleURLName</key>
 			<string>org.unknownplace.sublhandler</string>

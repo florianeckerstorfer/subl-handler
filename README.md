@@ -1,14 +1,13 @@
-TextMate URLHandler for SublimeText 2 on OSX
+SublimeText 2 URLHandler on OSX
 =======================
 
-This application enables SublimeText 2 to open TextMate's `txmt:` urls, as described [here](http://manual.macromates.com/en/using_textmate_from_terminal#url_scheme_html)
+This application enables SublimeText 2 to open  `subl:` urls, as Textmate has as described [here](http://manual.macromates.com/en/using_textmate_from_terminal#url_scheme_html)
 
-    txmt://open/?url=file:///etc/passwd&line=10&column=2
+    subl://open/?url=file:///etc/passwd&line=10&column=2
 
 Requirements
 ------------
-
-* Mac OS X (10.6 or 10.7)
+* Mac OS X
 * SublimeText 2
 
 Installation
@@ -25,7 +24,7 @@ Test it
 
 Open terminal and type:
 
-    open 'txmt://open/?url=file:///etc/hosts'
+    open 'subl://open/?url=file:///etc/hosts'
 
 or just click any txmt link.
 

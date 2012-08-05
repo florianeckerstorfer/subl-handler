@@ -32,7 +32,7 @@ NSString *defaultPath = @"/Applications/Sublime Text 2.app/Contents/SharedSuppor
             if (file) {
                 NSTask *task = [[NSTask alloc] init];
                 [task setLaunchPath:path];
-                [task setArguments:[NSArray arrayWithObjects: [NSString stringWithFormat:@"%@:%d:%d", file, [line integerValue], [column integerValue]], nil]];
+                [task setArguments:[NSArray arrayWithObjects: [NSString stringWithFormat:@"%@:%lu:%lu", file, [line integerValue], [column integerValue]], nil]];
                 [task launch];
                 [task release];
             }
