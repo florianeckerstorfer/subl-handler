@@ -220,6 +220,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = SublHandler;
+				SDKROOT = macosx10.7;
 			};
 			name = Debug;
 		};
@@ -234,6 +235,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = SublHandler;
+				SDKROOT = macosx10.7;
 			};
 			name = Release;
 		};
