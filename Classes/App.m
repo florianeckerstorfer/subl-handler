@@ -40,8 +40,9 @@ NSString *defaultPath = @"/Applications/Sublime Text 2.app/Contents/SharedSuppor
                 NSString *identifier = [[NSBundle bundleWithPath:appPath] bundleIdentifier];
                 NSArray *selectedApps =
                 [NSRunningApplication runningApplicationsWithBundleIdentifier:identifier];
-                [(NSRunningApplication*)[selectedApps objectAtIndex:0]
-                 activateWithOptions: NSApplicationActivateAllWindows];
+                NSRunningApplication *runningApplcation = (NSRunningApplication*)[selectedApps objectAtIndex:0];
+                [runningApplcation activateWithOptions: NSApplicationActivateAllWindows];
+                [runningApplcation setCollectionBehavior: NSWindowCollectionBehaviorMoveToActiveSpace];
             }
         }
     }
