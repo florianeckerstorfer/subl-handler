@@ -35,6 +35,13 @@ NSString *defaultPath = @"/Applications/Sublime Text 2.app/Contents/SharedSuppor
                 [task setArguments:[NSArray arrayWithObjects: [NSString stringWithFormat:@"%@:%lu:%lu", file, [line integerValue], [column integerValue]], nil]];
                 [task launch];
                 [task release];
+                NSWorkspace *sharedWorkspace = [NSWorkspace sharedWorkspace];
+                NSString *appPath = [sharedWorkspace fullPathForApplication:@"Sublime Text 2"];
+                NSString *identifier = [[NSBundle bundleWithPath:appPath] bundleIdentifier];
+                NSArray *selectedApps =
+                [NSRunningApplication runningApplicationsWithBundleIdentifier:identifier];
+                [(NSRunningApplication*)[selectedApps objectAtIndex:0]
+                 activateWithOptions: NSApplicationActivateAllWindows];
             }
         }
     }
