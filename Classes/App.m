@@ -22,17 +22,17 @@ NSString *defaultPath = @"/Applications/Sublime Text 2.app/Contents/SharedSuppor
 
     if (url && [[url host] isEqualToString:@"open"]) {
         NSDictionary *params = [url dictionaryByDecodingQueryString];
-        NSURL *file_url = [NSURL URLWithString:[[params objectForKey:@"url"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
-        
-        if (file_url && [[file_url scheme] isEqualToString:@"file"]) {
-            NSString *file = [file_url path];
+        NSString* file  = [params objectForKey:@"file"];
+
+        if (file) {
             NSString *line = [params objectForKey:@"line"];
-            NSString *column = [params objectForKey:@"column"];
 
             if (file) {
                 NSTask *task = [[NSTask alloc] init];
                 [task setLaunchPath:path];
-                [task setArguments:[NSArray arrayWithObjects: [NSString stringWithFormat:@"%@:%lu:%lu", file, [line integerValue], [column integerValue]], nil]];
+                NSString* filePath = [NSString stringWithFormat:@"%@", file, [line integerValue]];
+                NSString* command = [NSString stringWithFormat:@"show_overlay {\"overlay\": \"goto\", \"text\":\"%@\"}", filePath];
+                [task setArguments:[NSArray arrayWithObjects:@"--command", command , nil]];
                 [task launch];
                 [task release];
                 NSWorkspace *sharedWorkspace = [NSWorkspace sharedWorkspace];
@@ -47,9 +47,9 @@ NSString *defaultPath = @"/Applications/Sublime Text 2.app/Contents/SharedSuppor
         }
     }
 
-    if (![prefPanel isVisible]) {
-        [NSApp terminate:self];
-    }
+//    if (![prefPanel isVisible]) {
+//        [NSApp terminate:self];
+//    }
 }
 
 -(IBAction)showPrefPanel:(id)sender {
