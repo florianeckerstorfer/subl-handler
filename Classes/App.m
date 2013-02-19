@@ -22,8 +22,8 @@ NSString *defaultPath = @"/Applications/Sublime Text 2.app/Contents/SharedSuppor
 
     if (url && [[url host] isEqualToString:@"open"]) {
         NSDictionary *params = [url dictionaryByDecodingQueryString];
-        NSURL *file_url = [NSURL URLWithString:[params objectForKey:@"url"]];
-
+        NSURL *file_url = [NSURL URLWithString:[[params objectForKey:@"url"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+        
         if (file_url && [[file_url scheme] isEqualToString:@"file"]) {
             NSString *file = [file_url path];
             NSString *line = [params objectForKey:@"line"];
