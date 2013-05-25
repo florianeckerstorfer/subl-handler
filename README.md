@@ -4,14 +4,9 @@ This application enables SublimeText 2 to open `subl:` urls, as Textmate has as 
 
     subl://open/?url=file:///etc/passwd&line=10&column=2
 
-Requirements
-------------
-* OS X
-* SublimeText 2
-
 Installation
 ------------
-Download [latest release](https://github.com/downloads/asuth/subl-handler/SublHandler.zip).
+Download [latest release](http://asuth.com/SublHandler.app.zip).
 
 Unzip it, then launch it. Select `SublHandler` -> `Preferences...`, then set the path for the subl binary.
 
