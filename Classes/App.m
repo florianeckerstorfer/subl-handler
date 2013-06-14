@@ -7,12 +7,16 @@
 
 @implementation App
 
+- (void)applicationWillFinishLaunching:(NSNotification *)notification
+{
+  NSAppleEventManager *appleEventManager = [NSAppleEventManager sharedAppleEventManager];
+  [appleEventManager setEventHandler:self andSelector:@selector(handleGetURLEvent:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
   [NSUserDefaults.standardUserDefaults registerDefaults:@{kDefaultsPathKey:kDefaultPath}];
-  NSAppleEventManager *appleEventManager = [NSAppleEventManager sharedAppleEventManager];
-  [appleEventManager setEventHandler:self andSelector:@selector(handleGetURLEvent:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
-  // TODO Show preferences when not opened from protocol
+  // TODO Show preferences when not opened from protocol;
 }
 
 -(void)awakeFromNib
@@ -25,34 +29,36 @@
  * Both line and col are optional.
  */
 -(void)handleGetURLEvent:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent
-{  
-    NSURL *url = [NSURL URLWithString:[[event paramDescriptorForKeyword:keyDirectObject] stringValue]];
-
-    if ([url.host isEqualToString:@"open"]) {
-        NSDictionary *params = [url dictionaryByDecodingQueryString];
-        NSString* file = [params objectForKey:@"file"];
-
-        if (file) {
-            NSString *line = [params objectForKey:@"line"];
-            NSString *column = [params objectForKey:@"col"];
-
-            if (file) {
-                NSTask *task = [[NSTask alloc] init];
-                [task setLaunchPath:self.sublimePath];
-                NSString* filePath = [NSString stringWithFormat:@"%@:%ld:%ld", file, line ? [line integerValue] : 1, [column integerValue]];
-                task.arguments = @[filePath];
-                [task launch];
-                [task release];
-                NSWorkspace *sharedWorkspace = [NSWorkspace sharedWorkspace];
-                NSString *appPath = [sharedWorkspace fullPathForApplication:@"Sublime Text 2"];
-                NSString *identifier = [[NSBundle bundleWithPath:appPath] bundleIdentifier];
-                NSArray *selectedApps = [NSRunningApplication runningApplicationsWithBundleIdentifier:identifier];
-                NSRunningApplication *runningApplcation = (NSRunningApplication*)[selectedApps objectAtIndex:0];
-                [runningApplcation activateWithOptions:NSApplicationActivateAllWindows];
-                //[runningApplcation setCollectionBehavior:NSWindowCollectionBehaviorMoveToActiveSpace];
-            }
-        }
+{
+  NSURL *url = [NSURL URLWithString:[[event paramDescriptorForKeyword:keyDirectObject] stringValue]];
+  
+  if ([url.host isEqualToString:@"open"]) {
+    NSDictionary *params = [url dictionaryByDecodingQueryString];
+    NSString* file = [params objectForKey:@"file"];
+    
+    if (file) {
+      NSString *line = [params objectForKey:@"line"];
+      NSString *column = [params objectForKey:@"col"];
+      
+      if (file) {
+        NSTask *task = [[NSTask alloc] init];
+        [task setLaunchPath:self.sublimePath];
+        NSString* filePath = [NSString stringWithFormat:@"%@:%ld:%ld", file, line ? [line integerValue] : 1, [column integerValue]];
+        task.arguments = @[filePath];
+        [task launch];
+        NSWorkspace *sharedWorkspace = [NSWorkspace sharedWorkspace];
+        NSString *appPath = [sharedWorkspace fullPathForApplication:@"Sublime Text 2"];
+        NSString *identifier = [[NSBundle bundleWithPath:appPath] bundleIdentifier];
+        NSArray *selectedApps = [NSRunningApplication runningApplicationsWithBundleIdentifier:identifier];
+        NSRunningApplication *runningApp = (NSRunningApplication*)[selectedApps objectAtIndex:0];
+        [runningApp activateWithOptions:NSApplicationActivateAllWindows];
+      }
     }
+  }
+  
+  if (!prefPanel.isVisible) {
+    [NSApp terminate:self];
+  }
 }
 
 -(IBAction)showPrefPanel:(id)sender
@@ -68,7 +74,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:path forKey:kDefaultsPathKey];
   }
-
+  
   [prefPanel orderOut:nil];
 }
 
