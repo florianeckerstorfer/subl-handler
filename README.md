@@ -43,6 +43,8 @@ You can also use [AppCleaner](http://www.freemacsoft.net/appcleaner/) or similar
 Author
 ------
 
+The code in this repository is based on [mariussoutier](https://github.com/mariussoutier/subl-handler) fork of [asuth/subl-handler](https://github.com/asuth/subl-handler).
+
 * Daisuke Murase :@typester (github, twitter, CPAN, etc..)
 * Scott Wadden (SublimeText 2 port)
 * Andrew Sutherland (Mountain Lion fixes)
