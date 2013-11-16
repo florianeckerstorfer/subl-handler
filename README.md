@@ -25,7 +25,7 @@ The **Preferences** dialog should show up everytime you launch the up directly. 
 
 ### Does it work?
 
-Open terminal and type:
+Open Terminal.app and type:
 
     open 'subl://open/?file=/etc/paths&line=5'
 
