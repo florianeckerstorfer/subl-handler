@@ -16,8 +16,8 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
     [NSUserDefaults.standardUserDefaults registerDefaults:@{kDefaultsPathKey:kDefaultPath}];
-    [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
     [self showPrefPanel:nil];
+    [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
 }
 
 -(void)awakeFromNib

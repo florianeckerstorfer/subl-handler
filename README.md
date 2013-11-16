@@ -21,7 +21,7 @@ Clone the repo and run the application via Xcode.
 Usage
 -----
 
-The **Preferences** dialog should show up everytime you launch the up directly. By default the path is set for Sublime Text 3, if you still use ST2 change it accordingly.
+The **Preferences** dialog should show up everytime you launch the up directly (sometimes you have to click the icon twice to make the Preferences pane show up). By default the path is set for Sublime Text 3, if you still use ST2 change it accordingly.
 
 ### Does it work?
 
