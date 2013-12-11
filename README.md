@@ -55,3 +55,7 @@ License
 
 BSD.
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/florianeckerstorfer/subl-handler/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
